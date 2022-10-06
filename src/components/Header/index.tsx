@@ -1,5 +1,6 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import logoImg from '../../assets/logo.svg'
+import { NewTransactionModal } from '../NewTransactionModal'
 import * as S from './styles'
 
 export function Header() {
@@ -13,17 +14,8 @@ export function Header() {
             <S.NewTransactionButton>Nova transação</S.NewTransactionButton>
           </Dialog.Trigger>
 
-          {/* Para colocar o nosso modal separado da lógica do Header, fazendo com que fique seja inserido até mesmo fora da div#root, facilitando o entendimento para os leitores de tela */}
-          <Dialog.Portal>
-            <Dialog.Overlay />
-            <Dialog.Content>
-              <Dialog.Title>Nova transação</Dialog.Title>
-              <Dialog.Description>
-                Content of the modal
-              </Dialog.Description>
-              <Dialog.Close />
-            </Dialog.Content>
-          </Dialog.Portal>
+          <NewTransactionModal />
+
         </Dialog.Root>
       </S.HeaderContent>
     </S.HeaderContainer>
