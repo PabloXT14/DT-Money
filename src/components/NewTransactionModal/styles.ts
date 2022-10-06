@@ -10,12 +10,13 @@ export const Overlay = styled(Dialog.Overlay)`
 `;
 
 export const Content = styled(Dialog.Content)`
-  min-width: 32rem;
+  max-width: 32rem;
+  width: 100%;
   background: ${({ theme }) => theme["gray-800"]};
   border-radius: 6px;
   padding: 2.5rem 3rem;
 
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -67,4 +68,34 @@ export const CloseButton = styled(Dialog.Close)`
   line-height: 0;/* para tirar espaço colocado pelo font-size do button */
   cursor: pointer;
   color: ${({ theme }) => theme["gray-500"]};
+`;
+
+export const TransactionType = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 0.5rem;
+`;
+
+interface TransactionTypeButtonProps {
+  variant: 'income' | 'outcome';
+}
+
+export const TransactionTypeButton = styled.button.attrs(props => ({
+  type: props.type || 'button'// definindo atributos do button
+}))<TransactionTypeButtonProps>`
+  background: ${({ theme }) => theme["gray-700"]};
+  color: ${({ theme }) => theme["gray-300"]};
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 6px;
+  border: 0;
+  cursor: pointer;
+
+  svg {
+    color: ${({ variant, theme }) => variant === 'income' ? theme["green-300"] : theme["red-300"]};
+  }
 `;
