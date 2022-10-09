@@ -1,35 +1,10 @@
-import { useEffect, useState } from "react";
 import { Header } from "../../components/Header";
 import { Summary } from "../../components/Summary";
 import { SearchForm } from "./components/SearchForm";
 
 import * as S from './styles'
 
-interface Transaction {
-  id: string;
-  description: string;
-  type: 'income' | 'outcome';
-  category: string;
-  price: number;
-  createdAt: string;
-}
-
-const baseURL = `http://localhost:3333`;
-
 export function Transactions() {
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
-
-  async function loadTransactions() {
-    const response = await fetch(`${baseURL}/transactions`)
-    const data = await response.json();
-
-    setTransactions(data);
-  }
-
-  useEffect(() => {
-    loadTransactions();
-  }, []);
-  
   return (
     <div>
       <Header />
@@ -40,21 +15,26 @@ export function Transactions() {
 
         <S.TransactionsTable>
           <tbody>
-            {transactions.map((transaction) => (
-              <tr>
-                <td width="50%">{transaction.description}</td>
-                <td>
-                  <S.PriceHighlight variant={transaction.type}>
-                    { transaction.type === 'income' 
-                      ? `R$ ${transaction.price}` 
-                      : `- R$ ${transaction.price}`
-                    }
-                  </S.PriceHighlight>
-                </td>
-                <td>{transaction.category}</td>
-                <td>{new Date(transaction.createdAt).toLocaleDateString()}</td>
-              </tr>
-            ))}
+            <tr>
+              <td width="50%">Desenvolvimento de site</td>
+              <td>
+                <S.PriceHighlight variant="income">
+                  R$ 12.000,00
+                </S.PriceHighlight>
+              </td>
+              <td>Venda</td>
+              <td>13/04/2022</td>
+            </tr>
+            <tr>
+              <td width="50%">Hamburguer</td>
+              <td>
+                <S.PriceHighlight variant="outcome">
+                  - R$ 59,00
+                </S.PriceHighlight>
+              </td>
+              <td>Alimentação</td>
+              <td>10/04/2022</td>
+            </tr>
           </tbody>
         </S.TransactionsTable>
       </S.TransactionsContainer>
