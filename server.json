@@ -6,15 +6,39 @@
       "type": "income",
       "category": "Venda",
       "price": 14000,
-      "createdAt": "2022-10-08T19:31:42.154Z"
+      "createdAt": "2022-04-13T19:31:42.154Z"
     },
     {
       "id": "hjhjhdsafsfsfscnnh",
       "description": "Hamburger",
       "type": "outcome",
-      "category": "Alimentaação",
+      "category": "Alimentação",
       "price": 50,
-      "createdAt": "2022-10-07T19:31:42.154Z"
+      "createdAt": "2022-04-10T19:31:42.154Z"
+    },
+    {
+      "id": "23232hdsafsfsfscnnh",
+      "description": "Aluguel do apartamento ",
+      "type": "outcome",
+      "category": "Casa",
+      "price": 1200,
+      "createdAt": "2022-03-27T19:31:42.154Z"
+    },
+    {
+      "id": "hjhjhdsafsfsfscnnh",
+      "description": "Computador",
+      "type": "income",
+      "category": "Venda",
+      "price": 5400,
+      "createdAt": "2022-03-15T19:31:42.154Z"
+    },
+    {
+      "id": "hjhjhdsafsfsfscnnh",
+      "description": "Desenvolvimento de site",
+      "type": "income",
+      "category": "Venda",
+      "price": 50,
+      "createdAt": "2022-03-13T19:31:42.154Z"
     }
   ]
 }
