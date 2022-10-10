@@ -1,36 +1,14 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import { Header } from "../../components/Header";
 import { Summary } from "../../components/Summary";
+import { TransactionsContext } from "../../contexts/TransactionsContext";
 import { SearchForm } from "./components/SearchForm";
 
 import * as S from './styles'
 
-// TIPAGEM DOS DADOS DE TRANSAÇÃO
-interface Transaction {
-  id: string;
-  description: string;
-  type: 'income' | 'outcome';
-  category: string;
-  price: number;
-  createdAt: string;
-}
-
-const baseURL = `http://localhost:3333`;
-
 export function Transactions() {
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const { transactions } = useContext(TransactionsContext);
 
-  async function loadTransactions() {
-    const response = await fetch(`${baseURL}/transactions`)
-    const data = await response.json();
-
-    setTransactions(data);
-  }
-
-  useEffect(() => {
-    loadTransactions();
-  }, []);
-  
   return (
     <div>
       <Header />
@@ -42,7 +20,7 @@ export function Transactions() {
         <S.TransactionsTable>
           <tbody>
             {transactions.map((transaction) => (
-              <tr>
+              <tr key={transaction.id}>
                 <td width="50%">{transaction.description}</td>
                 <td>
                   <S.PriceHighlight variant={transaction.type}>
