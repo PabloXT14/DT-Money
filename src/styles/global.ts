@@ -12,6 +12,20 @@ export const GlobalStyles = createGlobalStyle`
   box-shadow: 0 0 0 2px ${({ theme }) => theme["green-300"]};
  }
 
+ ::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+ }
+
+ ::-webkit-scrollbar-track {
+  background: transparent;
+ }
+
+ ::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: ${({ theme }) => theme["gray-600"]};
+ }
+
  body {
   background: ${({ theme }) => theme["gray-800"]};
   color: ${({ theme }) => theme["gray-100"]};
