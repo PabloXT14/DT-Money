@@ -2,7 +2,7 @@ import * as Dialog from '@radix-ui/react-dialog'
 import { ArrowCircleDown, ArrowCircleUp, X } from 'phosphor-react'
 import { CloseButton, Content, Overlay, TransactionType, TransactionTypeButton } from './styles'
 import * as zod from 'zod'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 // ESQUEMA DE VALIDAÇÃO
@@ -10,19 +10,23 @@ const newTransactionFormSchema = zod.object({
   description: zod.string(),
   price: zod.number(),
   category: zod.string(),
-  // type: zod.enum(['income', 'outcome']), // depois vamos fazer a validação desse campo
+  type: zod.enum(['income', 'outcome']), // depois vamos fazer a validação desse campo
 });
 
 // TIPAGEM DOS DADOS DO FORMULÁRIO
 type NewTransactionModalInputs = zod.infer<typeof newTransactionFormSchema>;
 
 export function NewTransactionModal() {
-  const { 
+  const {
+    control,
     register,
     handleSubmit,
     formState: { isSubmitting }
   } = useForm<NewTransactionModalInputs>({
     resolver: zodResolver(newTransactionFormSchema),
+    defaultValues: {// valores padrão
+      type: 'income'
+    }
   });
 
   async function handleCreateNewTransaction(data: NewTransactionModalInputs) {
@@ -60,16 +64,27 @@ export function NewTransactionModal() {
             {...register('category')}
           />
 
-          <TransactionType>
-            <TransactionTypeButton variant="income" value="income">
-              <ArrowCircleUp size={24} />
-              Entrada
-            </TransactionTypeButton>
-            <TransactionTypeButton variant="outcome" value="outcome">
-              <ArrowCircleDown size={24} />
-              Saída
-            </TransactionTypeButton>
-          </TransactionType>
+          <Controller // componente controlled do React Hook Form
+            control={control}
+            name="type"// referencia a qual valor do formulário do esquema de validação
+            
+            // rendiza o componente e recebe com parâmetro dados do field, fieldState e formState
+            render={({ field }) => {
+              return (
+                // field.onChange: altera para outro valor possível o input
+                <TransactionType onValueChange={field.onChange} value={field.value}>
+                  <TransactionTypeButton variant="income" value="income">
+                    <ArrowCircleUp size={24} />
+                    Entrada
+                  </TransactionTypeButton>
+                  <TransactionTypeButton variant="outcome" value="outcome">
+                    <ArrowCircleDown size={24} />
+                    Saída
+                  </TransactionTypeButton>
+                </TransactionType>
+              )
+            }}
+          />
 
           <button type="submit" disabled={isSubmitting}>
             Cadastrar
