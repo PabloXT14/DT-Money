@@ -20,13 +20,15 @@ export function SearchForm() {
   const { 
     register,
     handleSubmit,
-    formState: { isSubmitting }
+    formState: { isSubmitting },
+    reset,
   } = useForm<SearchFormInputs>({
     resolver: zodResolver(searchFormSchema),
   });
 
   async function handleSearchTransactions(data: SearchFormInputs) {
     await fetchTransactions(data.query);
+    reset();
   }
 
   return (
