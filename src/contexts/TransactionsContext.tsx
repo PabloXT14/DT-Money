@@ -11,9 +11,17 @@ interface Transaction {
   createdAt: string;
 }
 
+interface CreateTransactionInput {
+  description: string;
+  price: number;
+  category: string;
+  type: 'income' | 'outcome';
+}
+
 interface TransactionsContextType {
   transactions: Transaction [];
   fetchTransactions: (query?: string) => Promise<void>;
+  createTransaction: (data: CreateTransactionInput) => Promise<void>;
 }
 
 interface TransactionsProviderProps {
@@ -28,11 +36,29 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
   async function fetchTransactions(query?: string) {
     const response = await api.get('transactions', {
       params: {
+        _sort: 'createdAt',// ordenar dados pelo campo createAt
+        _order: 'desc',// tipo de ordenação
         q: query,
       }
     })
 
     setTransactions(response.data);
+  }
+
+  async function createTransaction(data: CreateTransactionInput) {
+    const { description, price, category, type } = data;
+
+    // o "id" de nova transação já é criado de forma automática pelo JSON Server
+    // Em um servidor back-end tbm deve criar de forma automática o id de um novo produto,...
+    const response = await api.post('/transactions', {
+      description,
+      price,
+      category,
+      type,
+      createdAt: new Date(),
+    })
+
+    setTransactions((state) => [response.data, ...state]);
   }
 
   useEffect(() => {
@@ -43,6 +69,7 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
     <TransactionsContext.Provider value={{ 
       transactions,
       fetchTransactions,
+      createTransaction,
     }}>
       { children }
     </TransactionsContext.Provider>

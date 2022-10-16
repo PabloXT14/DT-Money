@@ -4,6 +4,8 @@ import { CloseButton, Content, Overlay, TransactionType, TransactionTypeButton }
 import * as zod from 'zod'
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useContext, useState } from 'react'
+import { TransactionsContext } from '../../contexts/TransactionsContext'
 
 // ESQUEMA DE VALIDAÇÃO
 const newTransactionFormSchema = zod.object({
@@ -16,12 +18,16 @@ const newTransactionFormSchema = zod.object({
 // TIPAGEM DOS DADOS DO FORMULÁRIO
 type NewTransactionModalInputs = zod.infer<typeof newTransactionFormSchema>;
 
+
 export function NewTransactionModal() {
+  const { createTransaction } = useContext(TransactionsContext);
+
   const {
     control,
     register,
     handleSubmit,
-    formState: { isSubmitting }
+    formState: { isSubmitting },
+    reset,
   } = useForm<NewTransactionModalInputs>({
     resolver: zodResolver(newTransactionFormSchema),
     defaultValues: {// valores padrão
@@ -30,8 +36,15 @@ export function NewTransactionModal() {
   });
 
   async function handleCreateNewTransaction(data: NewTransactionModalInputs) {
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    console.log(data);
+    const { description, price, category, type } = data;
+    
+    await createTransaction({
+      description,
+      price,
+      category,
+      type,
+    });
+    reset();
   }
 
   return (
