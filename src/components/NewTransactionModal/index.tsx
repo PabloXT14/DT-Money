@@ -1,10 +1,16 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import { ArrowCircleDown, ArrowCircleUp, X } from 'phosphor-react'
-import { CloseButton, Content, Overlay, TransactionType, TransactionTypeButton } from './styles'
+import {
+  CloseButton,
+  Content,
+  Overlay,
+  TransactionType,
+  TransactionTypeButton,
+} from './styles'
 import * as zod from 'zod'
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { TransactionsContext } from '../../contexts/TransactionsContext'
 
 // ESQUEMA DE VALIDAÇÃO
@@ -13,14 +19,13 @@ const newTransactionFormSchema = zod.object({
   price: zod.number(),
   category: zod.string(),
   type: zod.enum(['income', 'outcome']), // depois vamos fazer a validação desse campo
-});
+})
 
 // TIPAGEM DOS DADOS DO FORMULÁRIO
-type NewTransactionModalInputs = zod.infer<typeof newTransactionFormSchema>;
-
+type NewTransactionModalInputs = zod.infer<typeof newTransactionFormSchema>
 
 export function NewTransactionModal() {
-  const { createTransaction } = useContext(TransactionsContext);
+  const { createTransaction } = useContext(TransactionsContext)
 
   const {
     control,
@@ -30,21 +35,22 @@ export function NewTransactionModal() {
     reset,
   } = useForm<NewTransactionModalInputs>({
     resolver: zodResolver(newTransactionFormSchema),
-    defaultValues: {// valores padrão
-      type: 'income'
-    }
-  });
+    defaultValues: {
+      // valores padrão
+      type: 'income',
+    },
+  })
 
   async function handleCreateNewTransaction(data: NewTransactionModalInputs) {
-    const { description, price, category, type } = data;
-    
+    const { description, price, category, type } = data
+
     await createTransaction({
       description,
       price,
       category,
       type,
-    });
-    reset();
+    })
+    reset()
   }
 
   return (
@@ -58,19 +64,19 @@ export function NewTransactionModal() {
         </CloseButton>
 
         <form action="" onSubmit={handleSubmit(handleCreateNewTransaction)}>
-          <input 
+          <input
             type="text"
             placeholder="Descrição"
             required
             {...register('description')}
           />
-          <input 
+          <input
             type="text"
             placeholder="Preço"
             required
             {...register('price', { valueAsNumber: true })}
           />
-          <input 
+          <input
             type="text"
             placeholder="Categoria"
             required
@@ -79,13 +85,15 @@ export function NewTransactionModal() {
 
           <Controller // componente controlled do React Hook Form
             control={control}
-            name="type"// referencia a qual valor do formulário do esquema de validação
-            
+            name="type" // referencia a qual valor do formulário do esquema de validação
             // rendiza o componente e recebe com parâmetro dados do field, fieldState e formState
             render={({ field }) => {
               return (
                 // field.onChange: altera para outro valor possível o input
-                <TransactionType onValueChange={field.onChange} value={field.value}>
+                <TransactionType
+                  onValueChange={field.onChange}
+                  value={field.value}
+                >
                   <TransactionTypeButton variant="income" value="income">
                     <ArrowCircleUp size={24} />
                     Entrada
@@ -103,7 +111,6 @@ export function NewTransactionModal() {
             Cadastrar
           </button>
         </form>
-        
       </Content>
     </Dialog.Portal>
   )

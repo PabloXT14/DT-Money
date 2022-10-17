@@ -1,52 +1,52 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
-import { api } from "../lib/axios";
+import { createContext, ReactNode, useEffect, useState } from 'react'
+import { api } from '../lib/axios'
 
 // TIPAGEM DOS DADOS DE TRANSAÇÃO
 interface Transaction {
-  id: string;
-  description: string;
-  type: 'income' | 'outcome';
-  category: string;
-  price: number;
-  createdAt: string;
+  id: string
+  description: string
+  type: 'income' | 'outcome'
+  category: string
+  price: number
+  createdAt: string
 }
 
 interface CreateTransactionInput {
-  description: string;
-  price: number;
-  category: string;
-  type: 'income' | 'outcome';
+  description: string
+  price: number
+  category: string
+  type: 'income' | 'outcome'
 }
 
 interface TransactionsContextType {
-  transactions: Transaction [];
-  fetchTransactions: (query?: string) => Promise<void>;
-  createTransaction: (data: CreateTransactionInput) => Promise<void>;
+  transactions: Transaction[]
+  fetchTransactions: (query?: string) => Promise<void>
+  createTransaction: (data: CreateTransactionInput) => Promise<void>
 }
 
 interface TransactionsProviderProps {
-  children: ReactNode;
+  children: ReactNode
 }
 
-export const TransactionsContext = createContext({} as TransactionsContextType);
+export const TransactionsContext = createContext({} as TransactionsContextType)
 
 export function TransactionsProvider({ children }: TransactionsProviderProps) {
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [transactions, setTransactions] = useState<Transaction[]>([])
 
   async function fetchTransactions(query?: string) {
     const response = await api.get('transactions', {
       params: {
-        _sort: 'createdAt',// ordenar dados pelo campo createAt
-        _order: 'desc',// tipo de ordenação
+        _sort: 'createdAt', // ordenar dados pelo campo createAt
+        _order: 'desc', // tipo de ordenação
         q: query,
-      }
+      },
     })
 
-    setTransactions(response.data);
+    setTransactions(response.data)
   }
 
   async function createTransaction(data: CreateTransactionInput) {
-    const { description, price, category, type } = data;
+    const { description, price, category, type } = data
 
     // o "id" de nova transação já é criado de forma automática pelo JSON Server
     // Em um servidor back-end tbm deve criar de forma automática o id de um novo produto,...
@@ -58,20 +58,22 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
       createdAt: new Date(),
     })
 
-    setTransactions((state) => [response.data, ...state]);
+    setTransactions((state) => [response.data, ...state])
   }
 
   useEffect(() => {
-    fetchTransactions();
-  }, []);
+    fetchTransactions()
+  }, [])
 
   return (
-    <TransactionsContext.Provider value={{ 
-      transactions,
-      fetchTransactions,
-      createTransaction,
-    }}>
-      { children }
+    <TransactionsContext.Provider
+      value={{
+        transactions,
+        fetchTransactions,
+        createTransaction,
+      }}
+    >
+      {children}
     </TransactionsContext.Provider>
   )
 }

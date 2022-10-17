@@ -39,6 +39,14 @@
       "category": "Venda",
       "price": 50,
       "createdAt": "2022-03-13T19:31:42.154Z"
+    },
+    {
+      "description": "Batata",
+      "price": 5,
+      "category": "Alimentação",
+      "type": "outcome",
+      "createdAt": "2022-10-17T14:19:01.524Z",
+      "id": "A4QBxC7"
     }
   ]
 }

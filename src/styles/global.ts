@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyles = createGlobalStyle`
  * {
@@ -9,7 +9,7 @@ export const GlobalStyles = createGlobalStyle`
 
  :focus {
   outline: none;
-  box-shadow: 0 0 0 2px ${({ theme }) => theme["green-300"]};
+  box-shadow: 0 0 0 2px ${({ theme }) => theme['green-300']};
  }
 
  ::-webkit-scrollbar {
@@ -23,12 +23,12 @@ export const GlobalStyles = createGlobalStyle`
 
  ::-webkit-scrollbar-thumb {
   border-radius: 3px;
-  background: ${({ theme }) => theme["gray-600"]};
+  background: ${({ theme }) => theme['gray-600']};
  }
 
  body {
-  background: ${({ theme }) => theme["gray-800"]};
-  color: ${({ theme }) => theme["gray-100"]};
+  background: ${({ theme }) => theme['gray-800']};
+  color: ${({ theme }) => theme['gray-100']};
   -webkit-font-smoothing: antialiased;
  }
  
