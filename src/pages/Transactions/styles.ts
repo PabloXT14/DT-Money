@@ -7,11 +7,16 @@ export const TransactionsContainer = styled.main`
   padding: 0 1.5rem;
 `
 
+export const TableContainer = styled.div`
+  margin-top: 1.5rem;
+  overflow: auto;
+`
+
 export const TransactionsTable = styled.table`
   width: 100%;
   border-collapse: separate; // cada celula da table tera a borda individual
   border-spacing: 0 0.5rem; // espaçamente a partir da borda entre as células da tabela (horizontal, vertical)
-  margin-top: 1.5rem;
+  min-width: 768px;
 
   td {
     padding: 1.25rem 2rem;
