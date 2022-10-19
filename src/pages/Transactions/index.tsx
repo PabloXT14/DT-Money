@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContextSelector } from 'use-context-selector'
 import { Header } from '../../components/Header'
 import { Summary } from '../../components/Summary'
 import { TransactionsContext } from '../../contexts/TransactionsContext'
@@ -8,7 +8,14 @@ import { SearchForm } from './components/SearchForm'
 import * as S from './styles'
 
 export function Transactions() {
-  const { transactions } = useContext(TransactionsContext)
+  /*
+    useContextSelector(Contexto, (contexto) => {
+      função que irá retornar somente os dados necessários que seerão utilizados do contexto no componente
+    })
+  */
+  const transactions = useContextSelector(TransactionsContext, (context) => {
+    return context.transactions
+  })
 
   return (
     <div>
