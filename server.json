@@ -47,6 +47,14 @@
       "type": "outcome",
       "createdAt": "2022-10-17T14:19:01.524Z",
       "id": "A4QBxC7"
+    },
+    {
+      "description": "Cenoura",
+      "price": 7,
+      "category": "Alimentação",
+      "type": "outcome",
+      "createdAt": "2022-10-20T12:20:48.438Z",
+      "id": "09a4z5s"
     }
   ]
 }
