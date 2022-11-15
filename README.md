@@ -43,13 +43,12 @@
 
 ## 💻 About
 
-<!--
-O Github Blog é uma aplicação web que tem como objetivo mostrar visualmente com um design e layout mais bem elaborado os dados do criador deste aplicação, além das `issues` presentes neste mesmo repositório no Github, permitindo também a pesquisa por `issues` específicas.
+O DT-Money é uma aplicação front-end web semelhante a uma carteira digital, que mostra a sua entradas(`incomes`) e saídas (`outcome`) e o total de renda que possui, além de uma lista detalhadas das suas transações realizadas.
 
-O principal conceito treinado nesta aplicação foi a utilização de API em projetos React, no caso, a API do Github.
+O principal conceito treinado nesta aplicação foi a utilização de API em projetos React.
 
-O projeto foi desenvolvido como conclusão de um desafio do curso **Ignite** oferecida pela [Rocketseat](https://www.rocketseat.com.br/). O Ignite é um curso de especialização em stacks específicas amplamente utilizadas e valorizadas no mercado como React, React Native, Node.js e Elixir.
--->
+O projeto foi desenvolvido como uma das etapas de aprendizado do curso **Ignite** oferecida pela [Rocketseat](https://www.rocketseat.com.br/). O Ignite é um curso de especialização em stacks específicas amplamente utilizadas e valorizadas no mercado como React, React Native, Node.js e Elixir.
+
 ---
 
 <!-- ## ⚙️ Funcionalidades
@@ -79,13 +78,17 @@ Você pode visualizar o layout do projeto através [desse link](https://www.figm
 ### Web
 
 <p align="center">
-  <img alt="Animated Web Demonstration" title="#Web" src=".github/github_blog-demonstration.gif" width="100%">
+  <img alt="Web Demonstration 01" title="#Web-1" src=".github/demonstrations/web-demonstration-01.png" width="100%">
+  <img alt="Web Demonstration 02" title="#Web-2" src=".github/demonstrations/web-demonstration-02.png" width="100%">
+  <img alt="Web Demonstration 03" title="#Web-3" src=".github/demonstrations/web-demonstration-03.png" width="375px">
+  <img alt="Web Demonstration 04" title="#Web-4" src=".github/demonstrations/web-demonstration-04.png" width="375px">
 </p>
 
 <!-- ### Mobile
 
 <p align="center">
-  <img alt="Layout Mobile Demonstration" title="#Mobile" src=".github/images/mobile-demonstration.png" width="100%">
+  <img alt="Layout Mobile Demonstration 01" title="#Mobile" src=".github/demonstrations/mobile-demonstration-01.png" width="100%">
+  <img alt="Layout Mobile Demonstration 02" title="#Mobile" src=".github/demonstrations/mobile-demonstration-02.png" width="100%">
 </p> -->
 
 ---
@@ -177,14 +180,17 @@ As seguintes ferramentas foram usadas na construção do projeto:
 #### **Website**  ([Vite](https://vitejs.dev/guide/)  +  [TypeScript](https://www.typescriptlang.org/))
 
 -   **[Styled-Components](https://tailwindcss.com/)**
+-   **[Phosphor React](https://phosphoricons.com/)**
 -   **[React Roter Dom](https://reactrouter.com/en/v6.3.0)**
 -   **[Axios](https://github.com/axios/axios)**
 -   **[React Hook Form](https://github.com/axios/axios)**
 -   **[Zod](https://github.com/colinhacks/zod)**
 -   **[@hookform/resolvers](https://www.npmjs.com/package/@hookform/resolvers)**
 -   **[date-fns](https://date-fns.org/)**
+-   **[Radix UI](https://www.radix-ui.com/)**
+-   **[use-context-selector](https://github.com/dai-shi/use-context-selector)**
 
-> Veja o arquivo  [package.json](https://github.com/pabloxt14/Github-Blog/package.json)
+> Veja o arquivo  [package.json](https://github.com/pabloxt14/DT-Money/package.json)
 
 <!-- #### **Server**  ([NodeJS](https://nodejs.org/en/)  +  [TypeScript](https://www.typescriptlang.org/))
 
