@@ -141,10 +141,10 @@ $ npm run dev
 
 ```bash
 # Clone este repositório
-$ git clone git@github.com:pabloxt14/Github-Blog.git
+$ git clone git@github.com:pabloxt14/DT-Money.git
 
 # Vá para a pasta da aplicação Front End
-$ cd Github-Blog
+$ cd DT-Money
 
 # Instale as dependências
 $ npm install
@@ -183,10 +183,6 @@ As seguintes ferramentas foram usadas na construção do projeto:
 -   **[Zod](https://github.com/colinhacks/zod)**
 -   **[@hookform/resolvers](https://www.npmjs.com/package/@hookform/resolvers)**
 -   **[date-fns](https://date-fns.org/)**
--   **[Font Awesome](https://fontawesome.com/docs/web/use-with/react/use-with)**
--   **[React Markdown](https://fontawesome.com/docs/web/use-with/react/use-with)**
--   **[React Syntax Highlighter](https://github.com/react-syntax-highlighter/react-syntax-highlighter)**
--   **[@formkit/auto-animate](https://auto-animate.formkit.com/)**
 
 > Veja o arquivo  [package.json](https://github.com/pabloxt14/Github-Blog/package.json)
 
